@@ -48,6 +48,26 @@ class HTMLExporter(TemplateExporter):
     def _template_data_paths_default(self):
         return jupyter_path("nbconvert", "templates", "html")
 
+    cdn_url_prefix = Unicode('https://cdnjs.cloudflare.com/',
+                    help="""
+                    The CDN URL prefix for required JavaScript libraries.
+                    This defaults to the CDNJS CDN hosted by cloudfare:
+                    https://cdnjs.cloudflare.com/.
+
+                    The CDN URl provided should have the following libraries:
+
+                    Require -     <cdn-prefix>/ajax/libs/require.js/2.1.10/require.min.js
+                    JQuery -      <cdn-prefix>/ajax/libs/jquery/2.0.3/jquery.min.js
+
+                    """
+    ).tag(config=True)
+
+    # @default('cdn_url_prefix')
+    # def _cdn_url_prefix_default(self):
+    #     if self.cdn_url_prefix:
+    #         return self.cdn_url_prefix
+    #     else:
+    #         return 'https://cdnjs.cloudflare.com/'
 
     theme = Unicode('light',
                     help='Template specific theme(e.g. the JupyterLab CSS theme for the lab template)'
@@ -144,4 +164,5 @@ class HTMLExporter(TemplateExporter):
         resources['include_css'] = resources_include_css
         resources['include_js'] = resources_include_js
         resources['include_url'] = resources_include_url
+        resources['cdn_url_prefix'] = self.cdn_url_prefix
         return resources

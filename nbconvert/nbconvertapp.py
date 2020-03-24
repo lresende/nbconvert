@@ -57,6 +57,7 @@ nbconvert_aliases.update({
     'post': 'NbConvertApp.postprocessor_class',
     'output': 'NbConvertApp.output_base',
     'output-dir': 'FilesWriter.build_directory',
+    'cdn-url-prefix': 'HTMLExporter.cdn_url_prefix',
     'reveal-prefix': 'SlidesExporter.reveal_url_prefix',
     'nbformat': 'NotebookExporter.nbformat_version',
 })
